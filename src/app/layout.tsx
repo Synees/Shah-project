@@ -24,9 +24,12 @@ const pinyonScript = Pinyon_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Shah Project - Mahar & Seserahan Eksklusif",
+  title: "Shah Project",
   description:
     "Layanan pembuatan mahar pernikahan dan sewa/hias boks seserahan eksklusif dengan sentuhan artistik modern.",
+  icons: {
+    icon: "/images/logo-shah.png",
+  },
 };
 
 export default function RootLayout({
