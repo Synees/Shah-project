@@ -49,7 +49,7 @@ async function main() {
 
   // 2. Seed 1 Akun ADMIN dari environment variables
   const adminEmail = process.env.ADMIN_EMAIL || "admin@shahproject.com";
-  const rawAdminPassword = process.env.ADMIN_PASSWORD || "AdminShah2026!";
+  const rawAdminPassword = process.env.ADMIN_PASSWORD || "AdminShah2026";
   const adminWhatsapp = process.env.ADMIN_WHATSAPP || "6281234567890";
   const adminFullName = process.env.ADMIN_NAME || "Administrator Shah Project";
 

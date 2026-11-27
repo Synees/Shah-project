@@ -30,7 +30,6 @@ export default function LoginPage() {
         return;
       }
 
-      // Ambil session untuk cek role
       const res = await fetch("/api/auth/session");
       const session = await res.json();
       const role = session?.user?.role;
@@ -44,36 +43,61 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[#FAF7F2] px-4">
-      <div className="w-full max-w-md">
+    <main className="min-h-screen grid grid-cols-1 lg:grid-cols-12">
+      {/* ── Kolom kiri: identitas merek ── */}
+      <aside className="hidden lg:flex lg:col-span-5 flex-col justify-between bg-[#F2EBE1] border-r border-[#B8926A]/35 p-12 xl:p-16">
         {/* Logo */}
-        <div className="flex justify-center mb-8">
+        <div>
           <Image
             src="/images/logo-shah.png"
             alt="Shah Project"
-            width={80}
-            height={80}
+            width={130}
+            height={130}
             className="object-contain"
             priority
           />
         </div>
 
-        {/* Heading */}
-        <h1 className="font-heading text-4xl text-[#4E3626] text-center mb-2 tracking-wide">
-          Masuk
-        </h1>
-        <p className="font-sans text-sm text-[#7B5841] text-center mb-8">
-          Selamat datang kembali di Shah Project
-        </p>
+        {/* Kutipan kuratorial */}
+        <div>
+          <div className="w-8 h-px bg-[#B8926A] mb-8" aria-hidden="true" />
+          <blockquote className="font-heading text-3xl xl:text-4xl text-[#2B211A] leading-snug mb-6">
+            Setiap mahar dirangkai dari detail yang dipilih khusus untuk hari istimewa Anda.
+          </blockquote>
+        </div>
 
-        {/* Card */}
-        <div className="bg-white border border-[#E5DDD2] rounded-2xl px-8 py-10 shadow-sm">
-          <form onSubmit={handleSubmit} noValidate className="space-y-5">
+        {/* Catatan studio */}
+        <p className="font-sans text-xs text-[#B8926A] tracking-wide">
+          Katalog Mahar & Seserahan
+        </p>
+      </aside>
+
+      {/* ── Kolom kanan: formulir ── */}
+      <section className="lg:col-span-7 flex items-center justify-center bg-[#FAF7F2] px-6 py-16 lg:py-0">
+        <div className="w-full max-w-md">
+          {/* Logo mobile */}
+          <div className="flex justify-center mb-10 lg:hidden">
+            <Image
+              src="/images/logo-shah.png"
+              alt="Shah Project"
+              width={80}
+              height={80}
+              className="object-contain"
+              priority
+            />
+          </div>
+
+          {/* Judul */}
+          <h1 className="font-heading text-4xl xl:text-5xl text-[#4E3626] mb-2 tracking-wide">
+            Masuk ke Akun
+          </h1>
+
+          <form onSubmit={handleSubmit} noValidate className="space-y-7">
             {/* Error */}
             {error && (
               <p
                 role="alert"
-                className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3 font-sans"
+                className="text-xs text-red-700 border-l-2 border-red-400 pl-3 font-sans py-1"
               >
                 {error}
               </p>
@@ -83,7 +107,7 @@ export default function LoginPage() {
             <div className="space-y-1.5">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-[#4E3626] font-sans"
+                className="block text-[11px] uppercase tracking-[0.16em] text-[#6E5A4B] font-sans"
               >
                 Email
               </label>
@@ -94,7 +118,7 @@ export default function LoginPage() {
                 required
                 autoComplete="email"
                 placeholder="nama@email.com"
-                className="w-full border border-[#D6CABC] rounded-lg px-4 py-2.5 text-sm text-[#2B211A] bg-[#FAF7F2] placeholder:text-[#B8926A]/60 outline-none focus:border-[#7B5841] focus:ring-2 focus:ring-[#7B5841]/15 transition font-sans"
+                className="w-full bg-transparent border border-[#B8926A]/45 rounded-[2px] px-3 py-3 text-sm text-[#2B211A] placeholder:text-[#B8926A]/50 outline-none focus:border-[#4E3626] transition-colors font-sans"
               />
             </div>
 
@@ -102,7 +126,7 @@ export default function LoginPage() {
             <div className="space-y-1.5">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-[#4E3626] font-sans"
+                className="block text-[11px] uppercase tracking-[0.16em] text-[#6E5A4B] font-sans"
               >
                 Kata Sandi
               </label>
@@ -113,32 +137,32 @@ export default function LoginPage() {
                 required
                 autoComplete="current-password"
                 placeholder="••••••••"
-                className="w-full border border-[#D6CABC] rounded-lg px-4 py-2.5 text-sm text-[#2B211A] bg-[#FAF7F2] placeholder:text-[#B8926A]/60 outline-none focus:border-[#7B5841] focus:ring-2 focus:ring-[#7B5841]/15 transition font-sans"
+                className="w-full bg-transparent border border-[#B8926A]/45 rounded-[2px] px-3 py-3 text-sm text-[#2B211A] placeholder:text-[#B8926A]/50 outline-none focus:border-[#4E3626] transition-colors font-sans"
               />
             </div>
 
-            {/* Submit */}
+            {/* Tombol */}
             <button
               type="submit"
               disabled={pending}
-              className="w-full bg-[#7B5841] hover:bg-[#4E3626] disabled:bg-[#B8926A] text-white font-sans font-medium text-sm rounded-lg py-3 transition-colors mt-2"
+              className="w-full h-12 bg-[#4E3626] hover:bg-[#2B211A] disabled:bg-[#B8926A] text-white font-sans font-medium text-xs tracking-[0.12em] uppercase rounded-[2px] transition-colors mt-2 cursor-pointer disabled:cursor-not-allowed"
             >
-              {pending ? "Memproses…" : "Masuk"}
+              {pending ? "Memproses..." : "Masuk"}
             </button>
           </form>
-        </div>
 
-        {/* Footer link */}
-        <p className="text-center text-sm text-[#7B5841] font-sans mt-6">
-          Belum punya akun?{" "}
-          <Link
-            href="/register"
-            className="text-[#4E3626] font-semibold underline underline-offset-2 hover:text-[#7B5841] transition-colors"
-          >
-            Daftar sekarang
-          </Link>
-        </p>
-      </div>
+          {/* Link daftar */}
+          <p className="text-sm text-[#7B5841] font-sans mt-8">
+            Belum punya akun?{" "}
+            <Link
+              href="/register"
+              className="text-[#4E3626] font-semibold underline underline-offset-2 hover:text-[#2B211A] transition-colors"
+            >
+              Daftar sekarang
+            </Link>
+          </p>
+        </div>
+      </section>
     </main>
   );
 }

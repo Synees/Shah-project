@@ -16,7 +16,6 @@ export default function RegisterPage() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
-
     if (!formRef.current) return;
     const fd = new FormData(formRef.current);
 
@@ -31,41 +30,67 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[#FAF7F2] px-4 py-12">
-      <div className="w-full max-w-md">
+    <main className="min-h-screen grid grid-cols-1 lg:grid-cols-12">
+      {/* ── Kolom kiri: identitas merek ── */}
+      <aside className="hidden lg:flex lg:col-span-5 flex-col justify-between bg-[#F2EBE1] border-r border-[#B8926A]/35 p-12 xl:p-16">
         {/* Logo */}
-        <div className="flex justify-center mb-8">
+        <div>
           <Image
             src="/images/logo-shah.png"
             alt="Shah Project"
-            width={80}
-            height={80}
+            width={130}
+            height={130}
             className="object-contain"
             priority
           />
         </div>
 
-        {/* Heading */}
-        <h1 className="font-heading text-4xl text-[#4E3626] text-center mb-2 tracking-wide">
-          Buat Akun
-        </h1>
-        <p className="font-sans text-sm text-[#7B5841] text-center mb-8">
-          Daftarkan diri untuk memesan dekorasi pernikahan Shah Project
-        </p>
+        {/* Kutipan kuratorial */}
+        <div>
+          <div className="w-8 h-px bg-[#B8926A] mb-8" aria-hidden="true" />
+          <blockquote className="font-heading text-3xl xl:text-4xl text-[#2B211A] leading-snug mb-6">
+            Kuota dibuka terbatas setiap bulannya.
+          </blockquote>
+        </div>
 
-        {/* Card */}
-        <div className="bg-white border border-[#E5DDD2] rounded-2xl px-8 py-10 shadow-sm">
+        {/* Catatan studio */}
+        <p className="font-sans text-xs text-[#B8926A] tracking-wide">
+          Katalog Mahar & Seserahan
+        </p>
+      </aside>
+
+      {/* ── Kolom kanan: formulir ── */}
+      <section className="lg:col-span-7 flex items-center justify-center bg-[#FAF7F2] px-6 py-16 lg:py-0">
+        <div className="w-full max-w-md">
+          {/* Logo mobile */}
+          <div className="flex justify-center mb-10 lg:hidden">
+            <Image
+              src="/images/logo-shah.png"
+              alt="Shah Project"
+              width={80}
+              height={80}
+              className="object-contain"
+              priority
+            />
+          </div>
+
+          {/* Judul */}
+          <h1 className="font-heading text-4xl xl:text-5xl text-[#4E3626] mb-2 tracking-wide">
+            Registrasi Klien
+          </h1>
+
+          {/* Formulir — langsung di kanvas, tanpa kartu */}
           <form
             ref={formRef}
             onSubmit={handleSubmit}
             noValidate
-            className="space-y-5"
+            className="space-y-6"
           >
             {/* Error */}
             {error && (
               <p
                 role="alert"
-                className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3 font-sans"
+                className="text-xs text-red-700 border-l-2 border-red-400 pl-3 font-sans py-1"
               >
                 {error}
               </p>
@@ -75,7 +100,7 @@ export default function RegisterPage() {
             <div className="space-y-1.5">
               <label
                 htmlFor="fullName"
-                className="block text-sm font-medium text-[#4E3626] font-sans"
+                className="block text-[11px] uppercase tracking-[0.16em] text-[#6E5A4B] font-sans"
               >
                 Nama Lengkap
               </label>
@@ -86,7 +111,7 @@ export default function RegisterPage() {
                 required
                 autoComplete="name"
                 placeholder="Nama sesuai undangan"
-                className="w-full border border-[#D6CABC] rounded-lg px-4 py-2.5 text-sm text-[#2B211A] bg-[#FAF7F2] placeholder:text-[#B8926A]/60 outline-none focus:border-[#7B5841] focus:ring-2 focus:ring-[#7B5841]/15 transition font-sans"
+                className="w-full bg-transparent border border-[#B8926A]/45 rounded-[2px] px-3 py-3 text-sm text-[#2B211A] placeholder:text-[#B8926A]/50 outline-none focus:border-[#4E3626] transition-colors font-sans"
               />
             </div>
 
@@ -94,7 +119,7 @@ export default function RegisterPage() {
             <div className="space-y-1.5">
               <label
                 htmlFor="whatsapp"
-                className="block text-sm font-medium text-[#4E3626] font-sans"
+                className="block text-[11px] uppercase tracking-[0.16em] text-[#6E5A4B] font-sans"
               >
                 Nomor WhatsApp
               </label>
@@ -105,7 +130,7 @@ export default function RegisterPage() {
                 required
                 autoComplete="tel"
                 placeholder="08xx atau 628xx"
-                className="w-full border border-[#D6CABC] rounded-lg px-4 py-2.5 text-sm text-[#2B211A] bg-[#FAF7F2] placeholder:text-[#B8926A]/60 outline-none focus:border-[#7B5841] focus:ring-2 focus:ring-[#7B5841]/15 transition font-sans"
+                className="w-full bg-transparent border border-[#B8926A]/45 rounded-[2px] px-3 py-3 text-sm text-[#2B211A] placeholder:text-[#B8926A]/50 outline-none focus:border-[#4E3626] transition-colors font-sans"
               />
             </div>
 
@@ -113,7 +138,7 @@ export default function RegisterPage() {
             <div className="space-y-1.5">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-[#4E3626] font-sans"
+                className="block text-[11px] uppercase tracking-[0.16em] text-[#6E5A4B] font-sans"
               >
                 Email
               </label>
@@ -124,7 +149,7 @@ export default function RegisterPage() {
                 required
                 autoComplete="email"
                 placeholder="nama@email.com"
-                className="w-full border border-[#D6CABC] rounded-lg px-4 py-2.5 text-sm text-[#2B211A] bg-[#FAF7F2] placeholder:text-[#B8926A]/60 outline-none focus:border-[#7B5841] focus:ring-2 focus:ring-[#7B5841]/15 transition font-sans"
+                className="w-full bg-transparent border border-[#B8926A]/45 rounded-[2px] px-3 py-3 text-sm text-[#2B211A] placeholder:text-[#B8926A]/50 outline-none focus:border-[#4E3626] transition-colors font-sans"
               />
             </div>
 
@@ -132,7 +157,7 @@ export default function RegisterPage() {
             <div className="space-y-1.5">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-[#4E3626] font-sans"
+                className="block text-[11px] uppercase tracking-[0.16em] text-[#6E5A4B] font-sans"
               >
                 Kata Sandi
               </label>
@@ -144,24 +169,46 @@ export default function RegisterPage() {
                   required
                   autoComplete="new-password"
                   placeholder="Minimal 8 karakter"
-                  className="w-full border border-[#D6CABC] rounded-lg px-4 py-2.5 pr-11 text-sm text-[#2B211A] bg-[#FAF7F2] placeholder:text-[#B8926A]/60 outline-none focus:border-[#7B5841] focus:ring-2 focus:ring-[#7B5841]/15 transition font-sans"
+                  className="w-full bg-transparent border border-[#B8926A]/45 rounded-[2px] px-3 py-3 pr-11 text-sm text-[#2B211A] placeholder:text-[#B8926A]/50 outline-none focus:border-[#4E3626] transition-colors font-sans"
                 />
                 <button
                   type="button"
-                  aria-label={showPassword ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"}
+                  aria-label={
+                    showPassword ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"
+                  }
                   onClick={() => setShowPassword((v) => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#B8926A] hover:text-[#7B5841] transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#B8926A] hover:text-[#4E3626] transition-colors cursor-pointer"
                 >
                   {showPassword ? (
-                    // Eye-off icon
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="17"
+                      height="17"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
                       <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
                       <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
                       <line x1="1" y1="1" x2="23" y2="23" />
                     </svg>
                   ) : (
-                    // Eye icon
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="17"
+                      height="17"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
                       <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                       <circle cx="12" cy="12" r="3" />
                     </svg>
@@ -170,28 +217,28 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            {/* Submit */}
+            {/* Tombol */}
             <button
               type="submit"
               disabled={pending}
-              className="w-full bg-[#7B5841] hover:bg-[#4E3626] disabled:bg-[#B8926A] text-white font-sans font-medium text-sm rounded-lg py-3 transition-colors mt-2"
+              className="w-full h-12 bg-[#4E3626] hover:bg-[#2B211A] disabled:bg-[#B8926A] text-white font-sans font-medium text-xs tracking-[0.12em] uppercase rounded-[2px] transition-colors mt-2 cursor-pointer disabled:cursor-not-allowed"
             >
-              {pending ? "Mendaftarkan…" : "Buat Akun"}
+              {pending ? "Mendaftarkan..." : "Buat Akun"}
             </button>
           </form>
-        </div>
 
-        {/* Footer link */}
-        <p className="text-center text-sm text-[#7B5841] font-sans mt-6">
-          Sudah punya akun?{" "}
-          <Link
-            href="/login"
-            className="text-[#4E3626] font-semibold underline underline-offset-2 hover:text-[#7B5841] transition-colors"
-          >
-            Masuk
-          </Link>
-        </p>
-      </div>
+          {/* Link masuk */}
+          <p className="text-sm text-[#7B5841] font-sans mt-8">
+            Sudah punya akun?{" "}
+            <Link
+              href="/login"
+              className="text-[#4E3626] font-semibold underline underline-offset-2 hover:text-[#2B211A] transition-colors"
+            >
+              Masuk
+            </Link>
+          </p>
+        </div>
+      </section>
     </main>
   );
 }
